@@ -8,27 +8,31 @@
 
 import Foundation
 
-//let chapterHeadings = ["Basic Multiplication", "Rapid Multiplication"]
-
-struct Content {
-    var heading: String
-    var chapters: [String]
-
-}
-
-enum Chapters {
-    case one, two, three, four, five, six
+enum BasicMultiplicationMultiplier {
+    case eleven, twelve, nine, eight, seven, six, five, four, three
     
-//    func chapters(chapters: Chapters) -> Content {
-//        switch self {
-//        case .one:
-//            return Content(heading: "Basic Multiplication", chapters: ["By 11", "By 12"])
-//        default:
-//            return Content(heading: "i", chapters: ["1","2"])
-//        }
-//    }
+    var multiplierInteger: Int {
+        switch self {
+        case .twelve:
+            return 12
+        case .eleven:
+            return 11
+        case .nine:
+            return 9
+        case .eight:
+            return 8
+        case .seven:
+            return 7
+        case .six:
+            return 6
+        case .five:
+            return 5
+        case .four:
+            return 4
+        case .three:
+            return 3
+        }
+    }
 }
-
-let chapter1 = Content(heading: "Basic Multiplication", chapters: ["By 11", "By 12"])
 
 //https://factrepublic.com/facts/7212/

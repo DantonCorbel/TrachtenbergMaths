@@ -12,7 +12,7 @@
         <!--The Trachtenberg Method-->
         <scene sceneID="Cww-HA-6DO">
             <objects>
-                <tableViewController id="186-VE-yIv" sceneMemberID="viewController">
+                <tableViewController id="186-VE-yIv" customClass="ContentsTableViewController" customModule="TrachtenbergMaths" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="r09-Pb-iki">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -60,9 +60,6 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="9ud-FW-3xQ" kind="show" identifier="eleven" id="Znq-EV-JYu"/>
-                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="twelve" textLabel="YWE-NT-gaC" style="IBUITableViewCellStyleDefault" id="z4B-ss-0AR">
                                         <rect key="frame" x="0.0" y="116" width="320" height="44"/>
@@ -80,9 +77,6 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="9ud-FW-3xQ" kind="show" identifier="twelve" id="4GA-hg-dGo"/>
-                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="nine" textLabel="3vH-Jg-JUJ" style="IBUITableViewCellStyleDefault" id="wZH-iQ-9Jd">
                                         <rect key="frame" x="0.0" y="160" width="320" height="44"/>
@@ -100,9 +94,6 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="9ud-FW-3xQ" kind="show" identifier="nine" id="j0A-0y-l9u"/>
-                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="eight" textLabel="Pj9-Lr-Nty" style="IBUITableViewCellStyleDefault" id="Bfi-ih-rVF">
                                         <rect key="frame" x="0.0" y="204" width="320" height="44"/>
@@ -120,9 +111,6 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="9ud-FW-3xQ" kind="show" identifier="eight" id="Nrd-jJ-vSn"/>
-                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="six" textLabel="dGu-T7-2p2" style="IBUITableViewCellStyleDefault" id="IkS-Ie-Riv">
                                         <rect key="frame" x="0.0" y="248" width="320" height="44"/>
@@ -140,9 +128,6 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="9ud-FW-3xQ" kind="show" identifier="six" id="YNc-8N-ykd"/>
-                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="seven" textLabel="Rzu-TE-Gkd" style="IBUITableViewCellStyleDefault" id="uru-eJ-V9D">
                                         <rect key="frame" x="0.0" y="292" width="320" height="44"/>
@@ -160,9 +145,6 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="9ud-FW-3xQ" kind="show" identifier="seven" id="TzH-rB-rmb"/>
-                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="five" textLabel="pSN-NY-dfn" style="IBUITableViewCellStyleDefault" id="6rt-Zu-Pd2">
                                         <rect key="frame" x="0.0" y="336" width="320" height="44"/>
@@ -180,9 +162,6 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="9ud-FW-3xQ" kind="show" identifier="five" id="WvT-5b-Z5R"/>
-                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="four" textLabel="AFy-fs-huZ" style="IBUITableViewCellStyleDefault" id="viu-nQ-8KJ">
                                         <rect key="frame" x="0.0" y="380" width="320" height="44"/>
@@ -200,9 +179,6 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="9ud-FW-3xQ" kind="show" identifier="four" id="OQ0-E8-1Vh"/>
-                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="three" textLabel="20L-dF-jce" style="IBUITableViewCellStyleDefault" id="nNe-OM-Xcf">
                                         <rect key="frame" x="0.0" y="424" width="320" height="44"/>
@@ -220,9 +196,6 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="9ud-FW-3xQ" kind="show" identifier="three" id="h4P-lk-oJA"/>
-                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -326,6 +299,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="The Trachtenberg Method" id="5Ce-7g-lfB"/>
+                    <connections>
+                        <segue destination="9ud-FW-3xQ" kind="show" identifier="BasicMultiplication" id="Si0-gb-Ugb"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PiZ-dH-h3d" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -704,7 +680,4 @@
     <resources>
         <image name="29.Jakow-Trachtenberg" width="620" height="330"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="WvT-5b-Z5R"/>
-    </inferredMetricsTieBreakers>
 </document>

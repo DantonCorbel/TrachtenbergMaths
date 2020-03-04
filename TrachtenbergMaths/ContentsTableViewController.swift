@@ -22,25 +22,58 @@ class ContentsTableViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
+//    override func numberOfSections(in tableView: UITableView) -> Int {
+//        // #warning Incomplete implementation, return the number of sections
+//        return 1
+//    }
+//
+//    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        // #warning Incomplete implementation, return the number of rows
+//        return 0
+//    }
+    
+    var multiplier: BasicMultiplicationMultiplier!
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("You selected section £\(indexPath.section) cell #\(indexPath.row)!")
+        
+//        let indexPath = tableView.indexPathForSelectedRow;
+//        let currentCell = tableView.cellForRow(at: indexPath!) as UITableViewCell!;
+//
+//        multiplier = currentCell!.textLabel!.text
+        if indexPath.section == 1 {
+            switch indexPath.row {
+            case 0: multiplier = BasicMultiplicationMultiplier.eleven
+            case 1: multiplier = BasicMultiplicationMultiplier.twelve
+            case 2: multiplier = BasicMultiplicationMultiplier.nine
+            case 3: multiplier = BasicMultiplicationMultiplier.eight
+            case 4: multiplier = BasicMultiplicationMultiplier.six
+            case 5: multiplier = BasicMultiplicationMultiplier.seven
+            case 6: multiplier = BasicMultiplicationMultiplier.five
+            case 7: multiplier = BasicMultiplicationMultiplier.four
+            case 8: multiplier = BasicMultiplicationMultiplier.three
+            default:
+                multiplier = nil
+            }
+            performSegue(withIdentifier: "BasicMultiplication", sender: self)
+        }
+    }
+    
+
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+
+        if (segue.identifier == "BasicMultiplication") {
+
+            // initialize new view controller and cast it as your view controller
+            let viewController = segue.destination as! BasicMultiplicationViewController
+
+            // your new view controller should have property that will store passed value
+            viewController.multiplier = multiplier
+        }
+
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
-    }
-
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
-    }
-    */
 
     /*
     // Override to support conditional editing of the table view.

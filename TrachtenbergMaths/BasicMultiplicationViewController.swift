@@ -10,6 +10,7 @@ import UIKit
 
 
 class BasicMultiplicationViewController: UIViewController {
+    var multiplier: BasicMultiplicationMultiplier!
 
     @IBOutlet weak var multiplyByLabel: UILabel!
     @IBOutlet weak var multiplierLabel: UILabel!
@@ -18,6 +19,8 @@ class BasicMultiplicationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+         print("multiplier is \(multiplier)")
+        //multiplierLabel.text = String(BasicMultiplicationMultiplier.)
         let boldText = "Step 1: "
         let attrs = [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 17)]
         let attributedString = NSMutableAttributedString(string:boldText, attributes:attrs)
