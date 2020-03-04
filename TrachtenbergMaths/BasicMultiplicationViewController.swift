@@ -10,7 +10,8 @@ import UIKit
 
 
 class BasicMultiplicationViewController: UIViewController {
-    var multiplier: BasicMultiplicationMultiplier!
+    var multiplier: Int!
+    
 
     @IBOutlet weak var multiplyByLabel: UILabel!
     @IBOutlet weak var multiplierLabel: UILabel!
