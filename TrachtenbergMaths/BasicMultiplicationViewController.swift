@@ -18,11 +18,10 @@ class BasicMultiplicationViewController: UIViewController {
     @IBOutlet weak var answerTenThouLabel: UILabel!
     @IBOutlet weak var instructionsLabel: UILabel!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-         print("multiplier is \(multiplier)")
-        //multiplierLabel.text = String(BasicMultiplicationMultiplier.)
-        let boldText = "Step 1: "
+    
+    
+    func reset() {
+        let boldText = "\(elevenInstructions[0].heading)"
         let attrs = [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 17)]
         let attributedString = NSMutableAttributedString(string:boldText, attributes:attrs)
         
@@ -31,6 +30,13 @@ class BasicMultiplicationViewController: UIViewController {
         
         attributedString.append(normalString)
         instructionsLabel.attributedText = attributedString
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+         multiplierLabel.text = multiplier.multiplierString
+        multiplyByLabel.text = "Multiply by \(multiplier.multiplierString)"
+        reset()
 
         // Do any additional setup after loading the view.
     }
