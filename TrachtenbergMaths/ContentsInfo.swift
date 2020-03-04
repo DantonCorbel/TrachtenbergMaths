@@ -33,6 +33,29 @@ enum BasicMultiplicationMultiplier {
             return 3
         }
     }
+    
+    var multiplierString: String {
+        switch self {
+        case .twelve:
+            return "12"
+        case .eleven:
+            return "11"
+        case .nine:
+            return "9"
+        case .eight:
+            return "8"
+        case .seven:
+            return "7"
+        case .six:
+            return "6"
+        case .five:
+            return "5"
+        case .four:
+            return "4"
+        case .three:
+            return "3"
+        }
+    }
 }
 
 //https://factrepublic.com/facts/7212/
