@@ -32,7 +32,7 @@ class ContentsTableViewController: UITableViewController {
 //        return 0
 //    }
     
-    var multiplier: Int!
+    var multiplier: BasicMultiplicationMultiplier!
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("You selected section £\(indexPath.section) cell #\(indexPath.row)!")
@@ -43,15 +43,15 @@ class ContentsTableViewController: UITableViewController {
 //        multiplier = currentCell!.textLabel!.text
         if indexPath.section == 1 {
             switch indexPath.row {
-            case 0: multiplier = BasicMultiplicationMultiplier.eleven.multiplierInteger
-            case 1: multiplier = BasicMultiplicationMultiplier.twelve.multiplierInteger
-            case 2: multiplier = BasicMultiplicationMultiplier.nine.multiplierInteger
-            case 3: multiplier = BasicMultiplicationMultiplier.eight.multiplierInteger
-            case 4: multiplier = BasicMultiplicationMultiplier.six.multiplierInteger
-            case 5: multiplier = BasicMultiplicationMultiplier.seven.multiplierInteger
-            case 6: multiplier = BasicMultiplicationMultiplier.five.multiplierInteger
-            case 7: multiplier = BasicMultiplicationMultiplier.four.multiplierInteger
-            case 8: multiplier = BasicMultiplicationMultiplier.three.multiplierInteger
+            case 0: multiplier = BasicMultiplicationMultiplier.eleven
+            case 1: multiplier = BasicMultiplicationMultiplier.twelve
+            case 2: multiplier = BasicMultiplicationMultiplier.nine
+            case 3: multiplier = BasicMultiplicationMultiplier.eight
+            case 4: multiplier = BasicMultiplicationMultiplier.six
+            case 5: multiplier = BasicMultiplicationMultiplier.seven
+            case 6: multiplier = BasicMultiplicationMultiplier.five
+            case 7: multiplier = BasicMultiplicationMultiplier.four
+            case 8: multiplier = BasicMultiplicationMultiplier.three
             default:
                 multiplier = nil
             }
