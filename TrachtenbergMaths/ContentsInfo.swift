@@ -57,20 +57,20 @@ enum BasicMultiplicationMultiplier {
         }
     }
     
-    func instructionSteps() {
-        
-    }
+//    func instructionSteps() -> InstructionsStruct{
+//
+//    }
 }
 
-struct instructionsStruct {
+struct InstructionsStruct {
     var heading: String
     var instruction: String
 }
 
 let elevenInstructions = [
-    instructionsStruct(heading: "Step 1: ", instruction: "Bring right-most digit down to right-most position in answer."),
-    instructionsStruct(heading: "Step 2: ", instruction: "For the rest of the digits, add digit to right hand neighbour, plus anything carried over."),
-    instructionsStruct(heading: "Step 3: ", instruction: "Bring left-most digit down.")]
+    InstructionsStruct(heading: "First Step: ", instruction: "Bring right-most digit down to right-most position in answer."),
+    InstructionsStruct(heading: "Middle Steps: ", instruction: "For the rest of the digits, add digit to right hand neighbour, plus anything carried over."),
+    InstructionsStruct(heading: "Last Step: ", instruction: "Bring left-most digit down.")]
 
 
 //let arrayInstructions = [elevenInstructions]
