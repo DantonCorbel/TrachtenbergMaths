@@ -24,6 +24,13 @@ class BasicMultiplicationViewController: UIViewController {
     @IBOutlet var keyboardNumbersButtons: [UIButton]!
     
     @IBAction func numberButtonPressed(_ sender: UIButton) {
+        let number = sender.title (for: .normal)
+        for i in (0...answerLabels.count-1).reversed() {
+            if answerLabels[i].text == "?" {
+                answerLabels[i].text = number
+            }
+        }
+        
     }
     
     //get instruction into attributed text
