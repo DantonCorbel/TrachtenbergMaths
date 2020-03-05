@@ -615,6 +615,9 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Carry"/>
+                                                <connections>
+                                                    <action selector="carryButtonPressed:" destination="9ud-FW-3xQ" eventType="touchUpInside" id="oyB-Gt-6ty"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h1v-K0-5XQ">
                                                 <rect key="frame" x="57" y="0.0" width="52" height="30"/>
@@ -675,6 +678,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="wCz-Fl-JcL"/>
                     <connections>
+                        <outlet property="carryButton" destination="0Ke-wg-Sjz" id="7ex-pj-bXO"/>
                         <outlet property="instructionsLabel" destination="64X-Q9-Kc8" id="zSq-K1-azO"/>
                         <outlet property="multiplierLabel" destination="VWs-ZE-yKc" id="9JT-rY-Ds1"/>
                         <outlet property="multiplyByLabel" destination="kZ4-RE-ek9" id="AiO-Dp-tKu"/>

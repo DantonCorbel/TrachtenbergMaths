@@ -14,6 +14,7 @@ class BasicMultiplicationViewController: UIViewController {
     var multiplicand: Int!
     var multiplicandArray = ["0", "0"]
     var answer = 0
+    var toggleKeyColour = true
 
     @IBOutlet weak var multiplyByLabel: UILabel!
     @IBOutlet weak var multiplierLabel: UILabel!
@@ -22,16 +23,44 @@ class BasicMultiplicationViewController: UIViewController {
     @IBOutlet var answerLabels: [UILabel]!
     @IBOutlet weak var instructionsLabel: UILabel!
     @IBOutlet var keyboardNumbersButtons: [UIButton]!
+    @IBOutlet weak var carryButton: UIButton!
+    
+    
     
     @IBAction func numberButtonPressed(_ sender: UIButton) {
         let number = sender.title (for: .normal)
-        for i in (0...answerLabels.count-1).reversed() {
+        for i in (0..<answerLabels.count).reversed() {
             if answerLabels[i].text == "?" {
                 answerLabels[i].text = number
+                if i == 0 {break}
+                answerLabels[i-1].text = "?"
+                answerLabels[i-1].isEnabled = true
+                break
             }
         }
         
     }
+    
+    @IBAction func carryButtonPressed(_ sender: Any) {
+        
+        if toggleKeyColour {
+            carryButton.backgroundColor = UIColor.red
+            for i in 0..<keyboardNumbersButtons.count {
+                keyboardNumbersButtons[i].backgroundColor = UIColor.red
+                }
+            toggleKeyColour = false
+        } else {
+            carryButton.backgroundColor = UIColor.purple
+            for i in 0..<keyboardNumbersButtons.count {
+                keyboardNumbersButtons[i].backgroundColor = UIColor.orange
+                toggleKeyColour = true
+                
+        }
+
+        }
+    }
+    
+    
     
     //get instruction into attributed text
     func instructions () {
@@ -61,7 +90,7 @@ class BasicMultiplicationViewController: UIViewController {
     }
     
     func placeMultiplierLabels(array:Array<String>){
-        for index in 0...array.count - 1 {
+        for index in 0..<array.count {
             multiplicandLabels?[index].text = multiplicandArray[index]
         }
     }
