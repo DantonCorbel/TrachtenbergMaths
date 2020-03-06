@@ -29,13 +29,24 @@ class BasicMultiplicationViewController: UIViewController {
     
     @IBAction func numberButtonPressed(_ sender: UIButton) {
         let number = sender.title (for: .normal)
-        for i in (0..<answerLabels.count).reversed() {
-            if answerLabels[i].text == "?" {
-                answerLabels[i].text = number
-                if i == 0 {break}
-                answerLabels[i-1].text = "?"
-                answerLabels[i-1].isEnabled = true
-                break
+        if toggleKeyColour {
+            for i in (0..<answerLabels.count).reversed() {
+                if answerLabels[i].text == "?" {
+                    answerLabels[i].text = number
+                    if i == 0 {break}
+                    answerLabels[i-1].text = "?"
+                    answerLabels[i-1].isEnabled = true
+                    break
+                }
+            }
+        } else {
+            for i in 0..<carryLabels.count {
+                if answerLabels[i].isEnabled {
+                    carryLabels[i].text = number
+                    carryLabels[i].isEnabled = true
+                    toggleCarryButton()
+                    break
+                }
             }
         }
         
@@ -43,23 +54,33 @@ class BasicMultiplicationViewController: UIViewController {
     
     @IBAction func carryButtonPressed(_ sender: Any) {
         
-        if toggleKeyColour {
-            carryButton.backgroundColor = UIColor.red
-            for i in 0..<keyboardNumbersButtons.count {
-                keyboardNumbersButtons[i].backgroundColor = UIColor.red
-                }
-            toggleKeyColour = false
-        } else {
-            carryButton.backgroundColor = UIColor.purple
-            for i in 0..<keyboardNumbersButtons.count {
-                keyboardNumbersButtons[i].backgroundColor = UIColor.orange
-                toggleKeyColour = true
-                
-        }
-
-        }
+        toggleCarryButton()
     }
     
+    //toggle carry button
+    func toggleCarryButton() {
+        if toggleKeyColour {
+            carryButton.isSelected = true
+//            carryButton.backgroundColor = UIColor.blue
+//            carryButton.tintColor = UIColor.white
+////            for i in 0..<keyboardNumbersButtons.count {
+//                keyboardNumbersButtons[i].backgroundColor = UIColor.red
+//                //keyboardNumbersButtons[i].titleLabel.font = [UIFont, systemFontOfSize,14.0]
+//            }
+            toggleKeyColour = false
+            
+        } else {
+            carryButton.isSelected = false
+//            carryButton.backgroundColor = UIColor.white
+//            carryButton.tintColor = UIColor.blue
+////            for i in 0..<keyboardNumbersButtons.count {
+            //                keyboardNumbersButtons[i].backgroundColor = UIColor.orange}
+                toggleKeyColour = true
+                
+            
+            
+        }
+    }
     
     
     //get instruction into attributed text
