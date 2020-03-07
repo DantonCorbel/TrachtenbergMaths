@@ -23,6 +23,7 @@ class BasicMultiplicationViewController: UIViewController {
     @IBOutlet var answerLabels: [UILabel]!
     @IBOutlet weak var instructionsLabel: UILabel!
     @IBOutlet var keyboardNumbersButtons: [UIButton]!
+    @IBOutlet var buttonLabels: [UIButton]!
     @IBOutlet weak var carryButton: UIButton!
     
     
@@ -43,6 +44,7 @@ class BasicMultiplicationViewController: UIViewController {
             for i in 0..<carryLabels.count {
                 if answerLabels[i].isEnabled {
                     carryLabels[i].text = number
+                    carryLabels[i].tintColor = UIColor.red
                     carryLabels[i].isEnabled = true
                     toggleCarryButton()
                     break
@@ -61,24 +63,10 @@ class BasicMultiplicationViewController: UIViewController {
     func toggleCarryButton() {
         if toggleKeyColour {
             carryButton.isSelected = true
-//            carryButton.backgroundColor = UIColor.blue
-//            carryButton.tintColor = UIColor.white
-////            for i in 0..<keyboardNumbersButtons.count {
-//                keyboardNumbersButtons[i].backgroundColor = UIColor.red
-//                //keyboardNumbersButtons[i].titleLabel.font = [UIFont, systemFontOfSize,14.0]
-//            }
             toggleKeyColour = false
-            
         } else {
             carryButton.isSelected = false
-//            carryButton.backgroundColor = UIColor.white
-//            carryButton.tintColor = UIColor.blue
-////            for i in 0..<keyboardNumbersButtons.count {
-            //                keyboardNumbersButtons[i].backgroundColor = UIColor.orange}
-                toggleKeyColour = true
-                
-            
-            
+            toggleKeyColour = true
         }
     }
     
@@ -124,10 +112,7 @@ class BasicMultiplicationViewController: UIViewController {
                 answerLabels[i].isHidden = true
                 carryLabels[i].isHidden = true
             }
-//            multiplicandLabels[0].isHidden = true
-//            multiplicandLabels[1].isHidden = true
-//            answerLabels[0].isHidden = true
-//            answerLabels[1].isHidden = true
+
         } else if String(answer).count == 4 {
             multiplicandLabels[0].isHidden = true
             answerLabels[0].isHidden = true
@@ -144,6 +129,13 @@ class BasicMultiplicationViewController: UIViewController {
         placeMultiplierLabels(array: multiplicandArray)
         ChooseNumberOfZerosToShow(multiplier: multiplier, multiplicand: multiplicand)
         instructions()
+        for i in 0..<buttonLabels.count {
+            let button = buttonLabels[i]
+            button.backgroundColor = .clear
+            button.layer.cornerRadius = 5
+            button.layer.borderWidth = 1
+            button.layer.borderColor = UIColor.black.cgColor
+    }
 
         // Do any additional setup after loading the view.
     }

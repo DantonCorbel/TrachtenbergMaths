@@ -69,8 +69,20 @@ struct InstructionsStruct {
 
 let elevenInstructions = [
     InstructionsStruct(heading: "First Step: ", instruction: "Bring right-most digit down to right-most position in answer."),
-    InstructionsStruct(heading: "Middle Steps: ", instruction: "For the rest of the digits, add digit to right hand neighbour, plus anything carried over."),
-    InstructionsStruct(heading: "Last Step: ", instruction: "Bring left-most digit down.")]
+    InstructionsStruct(heading: "Middle Steps: ", instruction: "Add the digit to its right hand neighbour, plus anything carried over."),
+    InstructionsStruct(heading: "Last Step: ", instruction: "Bring left-most digit down, add anything carried over.")]
+
+let twelveInstructions = [
+    InstructionsStruct(heading: "First Step: ", instruction: "Doubld the right-most digit, bring it down to right-most position in answer."),
+    InstructionsStruct(heading: "Middle Steps: ", instruction: "For the rest of the digits, double the digit, and add to right hand neighbour, plus anything carried over."),
+    InstructionsStruct(heading: "Last Step: ", instruction: "Bring left-most digit down, add anything carried over.")
+]
+
+let sixInstructions = [
+    InstructionsStruct(heading: "First Step: ", instruction: "Doubld the right-most digit, bring it down to right-most position in answer."),
+    InstructionsStruct(heading: "Middle Steps: ", instruction: "Add \'half\' the righthand neighbour)"),
+    InstructionsStruct(heading: "Last Step: ", instruction: "Bring left-most digit down, add anything carried over.")
+]
 
 
 //let arrayInstructions = [elevenInstructions]
