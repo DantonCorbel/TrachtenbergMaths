@@ -92,6 +92,11 @@ class BasicMultiplicationViewController: UIViewController {
     }
     
     @IBAction func nextButtonPressed(_ sender: Any) {
+        multiplicandArray = ["0", "0"]
+        answer = 0
+        toggleKeyColour = true
+        givenAnswer = ""
+        numberTimesNumberButtonPressed = 0
         loadNewMultiplicandData()
         resetView()
     }
