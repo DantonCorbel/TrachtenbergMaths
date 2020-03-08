@@ -16,7 +16,8 @@ class BasicMultiplicationViewController: UIViewController {
     var multiplicandArray = ["0", "0"]
     var answer = 0
     var toggleKeyColour = true
-    var givenAnswer = 0
+    var givenAnswer = ""
+    var numberTimesNumberButtonPressed = 0
 
 //IBOutlet
     @IBOutlet weak var multiplyByLabel: UILabel!
@@ -43,11 +44,12 @@ class BasicMultiplicationViewController: UIViewController {
             for i in (0..<answerLabels.count).reversed() {
                 if answerLabels[i].text == "?" {
                     answerLabels[i].text = number
+                    getGivenAnswer(number: number!)
+                    numberTimesNumberButtonPressed += 1
+                    //print("Given number: \(givenAnswer)", "Answer: \(answer)", "numbers pressed: \(numberTimesNumberButtonPressed)")
                     if i == 0 {break}
                     answerLabels[i-1].text = "?"
                     answerLabels[i-1].isEnabled = true
-                    getGivenAnswer(number: number!)
-                    print("Given number: \(givenAnswer)", "Answer: \(answer)")
                     break
                 }
             }
@@ -77,7 +79,7 @@ class BasicMultiplicationViewController: UIViewController {
     }
     
     @IBAction func checkButtonPressed(_ sender: Any) {
-        if givenAnswer == answer {
+        if givenAnswer == String(answer) {
             instructionsLabel.text = "Correct! Try another or practice?"
             //instructionsLabel.textColor = UIColor.green
             nextButton.isEnabled = true
@@ -98,16 +100,17 @@ class BasicMultiplicationViewController: UIViewController {
     //Get given answer Int
     func getGivenAnswer(number: String) {
         
-        if givenAnswer == 0 {
-            givenAnswer = Int(number)!
+        if numberTimesNumberButtonPressed == 0 {
+            givenAnswer = number
         } else {
-            givenAnswer = Int(number + String(givenAnswer)) ?? 0
+            givenAnswer = number + givenAnswer
         }
-        if String(givenAnswer).count == String(answer).count {
+        if givenAnswer.count == String(answer).count {
             for i in 0..<keyboardNumbersButtons.count {
                 keyboardNumbersButtons[i].isEnabled = false
             }
         carryButton.isEnabled = false
+        checkButton.isEnabled = true
         }
     }
     
@@ -126,25 +129,29 @@ class BasicMultiplicationViewController: UIViewController {
     
     //get instruction into attributed text
     func instructions(multiplier: BasicMultiplicationMultiplier) {
+        
         var boldText = ""
         var normalText = ""
         
-        if String(givenAnswer).count == String(answer).count {
+        if givenAnswer.count == String(answer).count {
             checkButton.isEnabled = true
-                boldText = ""
-                normalText = ""
-            
-        } else if answerLabels[4].text == "?" {
-                    boldText = multiplier.instructionsSteps[0].heading
-                    normalText = multiplier.instructionsSteps[0].instruction
-          } else if answerLabels[5-String(answer).count].text == "?" {
-            boldText = multiplier.instructionsSteps[2].heading
-            normalText = multiplier.instructionsSteps[2].instruction
-          } else {
+            boldText = ""
+            normalText = ""
+
+        } else if numberTimesNumberButtonPressed == 0 {
+            boldText = multiplier.instructionsSteps[0].heading
+            normalText = multiplier.instructionsSteps[0].instruction
+        } else if numberTimesNumberButtonPressed <= 2 {
             boldText = multiplier.instructionsSteps[1].heading
             normalText = multiplier.instructionsSteps[1].instruction
+        } else if numberTimesNumberButtonPressed == 3 {
+            boldText = multiplier.instructionsSteps[2].heading
+            normalText = multiplier.instructionsSteps[2].instruction
+        } else {
+            boldText = "Final step: "
+            normalText = "Place carried number in left-most spot."
         }
-        
+    
         
         let attributes = [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 17)]
         let attributedString = NSMutableAttributedString(string:boldText, attributes:attributes)
@@ -194,8 +201,9 @@ class BasicMultiplicationViewController: UIViewController {
     }
     
     func resetView() {
-        givenAnswer = 0
+        givenAnswer = ""
         instructionsLabel.textColor = UIColor.black
+        numberTimesNumberButtonPressed = 0
         
         for i in 0..<keyboardNumbersButtons.count {
             keyboardNumbersButtons[i].isEnabled = true
@@ -225,6 +233,7 @@ class BasicMultiplicationViewController: UIViewController {
     
     func loadNewMultiplicandData() {
         multiplicand = randomNumber()
+        //multiplicand = 999
         multiplicandArrayFunc(number: multiplicand)
         placeMultiplierLabels(array: multiplicandArray)
         ChooseNumberOfZerosToShow(multiplier: multiplier, multiplicand: multiplicand)
