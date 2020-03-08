@@ -615,21 +615,33 @@
                                                 <rect key="frame" x="57" y="0.0" width="52" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <state key="normal" title="Undo"/>
+                                                <connections>
+                                                    <action selector="undoButtonPressed:" destination="9ud-FW-3xQ" eventType="touchUpInside" id="bPN-cx-0dz"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Nk-6C-INU">
                                                 <rect key="frame" x="114" y="0.0" width="52" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <state key="normal" title="Clear"/>
+                                                <connections>
+                                                    <action selector="clearButtonPressed:" destination="9ud-FW-3xQ" eventType="touchUpInside" id="ful-Qz-HSL"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n1q-GF-BMJ">
                                                 <rect key="frame" x="171" y="0.0" width="52" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <state key="normal" title="Check"/>
+                                                <connections>
+                                                    <action selector="checkButtonPressed:" destination="9ud-FW-3xQ" eventType="touchUpInside" id="Nzs-4U-exg"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FFR-0a-WzT">
                                                 <rect key="frame" x="228" y="0.0" width="52" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <state key="normal" title="Next"/>
+                                                <connections>
+                                                    <action selector="nextButtonPressed:" destination="9ud-FW-3xQ" eventType="touchUpInside" id="B2y-7Y-POK"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -663,9 +675,13 @@
                     <navigationItem key="navigationItem" id="wCz-Fl-JcL"/>
                     <connections>
                         <outlet property="carryButton" destination="0Ke-wg-Sjz" id="7ex-pj-bXO"/>
+                        <outlet property="checkButton" destination="n1q-GF-BMJ" id="kuw-f1-fjV"/>
+                        <outlet property="clearButton" destination="0Nk-6C-INU" id="mlj-hH-5PK"/>
                         <outlet property="instructionsLabel" destination="64X-Q9-Kc8" id="zSq-K1-azO"/>
                         <outlet property="multiplierLabel" destination="VWs-ZE-yKc" id="9JT-rY-Ds1"/>
                         <outlet property="multiplyByLabel" destination="kZ4-RE-ek9" id="AiO-Dp-tKu"/>
+                        <outlet property="nextButton" destination="FFR-0a-WzT" id="kQp-tW-Zfj"/>
+                        <outlet property="undoButton" destination="h1v-K0-5XQ" id="xM2-XD-G31"/>
                         <outletCollection property="keyboardNumbersButtons" destination="Dsf-aM-rXW" collectionClass="NSMutableArray" id="0T1-Tk-BkJ"/>
                         <outletCollection property="keyboardNumbersButtons" destination="Pkj-nU-P0s" collectionClass="NSMutableArray" id="ppd-oX-kZX"/>
                         <outletCollection property="keyboardNumbersButtons" destination="LRG-V1-aNe" collectionClass="NSMutableArray" id="Sbk-5C-Dn4"/>

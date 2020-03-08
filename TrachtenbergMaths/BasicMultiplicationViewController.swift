@@ -10,6 +10,7 @@ import UIKit
 
 
 class BasicMultiplicationViewController: UIViewController {
+//Variables
     var multiplier: BasicMultiplicationMultiplier!
     var multiplicand: Int!
     var multiplicandArray = ["0", "0"]
@@ -17,6 +18,7 @@ class BasicMultiplicationViewController: UIViewController {
     var toggleKeyColour = true
     var givenAnswer = 0
 
+//IBOutlet
     @IBOutlet weak var multiplyByLabel: UILabel!
     @IBOutlet weak var multiplierLabel: UILabel!
     @IBOutlet var multiplicandLabels: [UILabel]!
@@ -26,10 +28,16 @@ class BasicMultiplicationViewController: UIViewController {
     @IBOutlet var keyboardNumbersButtons: [UIButton]!
     @IBOutlet var buttonLabels: [UIButton]!
     @IBOutlet weak var carryButton: UIButton!
+    @IBOutlet weak var undoButton: UIButton!
+    @IBOutlet weak var clearButton: UIButton!
+    @IBOutlet weak var checkButton: UIButton!
+    @IBOutlet weak var nextButton: UIButton!
     
     
-    
+//IBAction
     @IBAction func numberButtonPressed(_ sender: UIButton) {
+        undoButton.isEnabled = true
+        clearButton.isEnabled = true
         let number = sender.title (for: .normal)
         if toggleKeyColour {
             for i in (0..<answerLabels.count).reversed() {
@@ -57,13 +65,39 @@ class BasicMultiplicationViewController: UIViewController {
     }
     
     @IBAction func carryButtonPressed(_ sender: Any) {
-        
         toggleCarryButton()
     }
+ 
+    @IBAction func undoButtonPressed(_ sender: Any) {
+    }
     
+    @IBAction func clearButtonPressed(_ sender: Any) {
+        resetView()
+    }
+    
+    @IBAction func checkButtonPressed(_ sender: Any) {
+        if givenAnswer == answer {
+            instructionsLabel.text = "Correct! Try another or practice?"
+            instructionsLabel.textColor = UIColor.green
+            nextButton.isEnabled = true
+        } else {
+            instructionsLabel.text = "Oops! The answer was \(answer). Keep trying"
+            instructionsLabel.textColor = UIColor.orange
+            nextButton.isEnabled = true
+        }
+    }
+    
+    @IBAction func nextButtonPressed(_ sender: Any) {
+    }
+    
+//GENERAL FUNCTIONS
     //Get given answer Int
     func getGivenAnswer(number: String) {
-        if givenAnswer == 0 {
+        if String(givenAnswer).count == String(answer).count {
+            for i in 0..<keyboardNumbersButtons.count {
+                keyboardNumbersButtons[i].isEnabled = false
+            }
+        }else if givenAnswer == 0 {
             givenAnswer = Int(number)!
         } else {
             givenAnswer = Int(String(givenAnswer) + number) ?? 0
@@ -89,6 +123,7 @@ class BasicMultiplicationViewController: UIViewController {
         var normalText = ""
         
         if String(givenAnswer).count == String(answer).count {
+            checkButton.isEnabled = true
                 boldText = ""
                 normalText = ""
             
@@ -151,22 +186,52 @@ class BasicMultiplicationViewController: UIViewController {
         }
     }
     
+    func resetView() {
+        givenAnswer = 0
+        
+        
+        for i in 0..<keyboardNumbersButtons.count {
+            keyboardNumbersButtons[i].isEnabled = true
+        }
+        carryButton.isEnabled = true
+        undoButton.isEnabled = false
+        clearButton.isEnabled = false
+        checkButton.isEnabled = false
+        nextButton.isEnabled = false
+        
+        for i in 0..<carryLabels.count {
+            carryLabels[i].isEnabled = false
+            carryLabels[i].textColor = UIColor.black
+            carryLabels[i].text = "0"
+        }
+        
+        for i in 0..<answerLabels.count {
+            if i == answerLabels.count-1 {
+                answerLabels[i].text = "?"
+            } else {
+                answerLabels[i].isEnabled = false
+                answerLabels[i].text = "0"
+            }
+        }
+        instructions(multiplier: multiplier)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        multiplierLabel.text = multiplier.multiplierString
-        multiplyByLabel.text = "Multiply by \(multiplier.multiplierString)"
         multiplicand = randomNumber()
         multiplicandArrayFunc(number: multiplicand)
         placeMultiplierLabels(array: multiplicandArray)
         ChooseNumberOfZerosToShow(multiplier: multiplier, multiplicand: multiplicand)
-        instructions(multiplier: multiplier)
+        multiplierLabel.text = multiplier.multiplierString
+        multiplyByLabel.text = "Multiply by \(multiplier.multiplierString)"
         for i in 0..<buttonLabels.count {
             let button = buttonLabels[i]
             button.backgroundColor = .clear
             button.layer.cornerRadius = 5
             button.layer.borderWidth = 1
             button.layer.borderColor = UIColor.black.cgColor
-    }
+        }
+        resetView()
 
         // Do any additional setup after loading the view.
     }
