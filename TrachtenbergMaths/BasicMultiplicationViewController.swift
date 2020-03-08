@@ -47,6 +47,7 @@ class BasicMultiplicationViewController: UIViewController {
                     answerLabels[i-1].text = "?"
                     answerLabels[i-1].isEnabled = true
                     getGivenAnswer(number: number!)
+                    print("Given number: \(givenAnswer)", "Answer: \(answer)")
                     break
                 }
             }
@@ -78,13 +79,14 @@ class BasicMultiplicationViewController: UIViewController {
     @IBAction func checkButtonPressed(_ sender: Any) {
         if givenAnswer == answer {
             instructionsLabel.text = "Correct! Try another or practice?"
-            instructionsLabel.textColor = UIColor.green
+            //instructionsLabel.textColor = UIColor.green
             nextButton.isEnabled = true
         } else {
             instructionsLabel.text = "Oops! The answer was \(answer). Keep trying"
-            instructionsLabel.textColor = UIColor.orange
+            //instructionsLabel.textColor = UIColor.orange
             nextButton.isEnabled = true
         }
+        print(givenAnswer, answer)
     }
     
     @IBAction func nextButtonPressed(_ sender: Any) {
@@ -99,7 +101,7 @@ class BasicMultiplicationViewController: UIViewController {
         if givenAnswer == 0 {
             givenAnswer = Int(number)!
         } else {
-            givenAnswer = Int(String(givenAnswer) + number) ?? 0
+            givenAnswer = Int(number + String(givenAnswer)) ?? 0
         }
         if String(givenAnswer).count == String(answer).count {
             for i in 0..<keyboardNumbersButtons.count {
