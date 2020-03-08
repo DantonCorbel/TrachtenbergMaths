@@ -54,7 +54,7 @@ class BasicMultiplicationViewController: UIViewController {
             for i in 0..<carryLabels.count {
                 if answerLabels[i].isEnabled {
                     carryLabels[i].text = number
-                    carryLabels[i].tintColor = UIColor.red
+                    carryLabels[i].textColor = UIColor.red
                     carryLabels[i].isEnabled = true
                     toggleCarryButton()
                     break
@@ -88,19 +88,24 @@ class BasicMultiplicationViewController: UIViewController {
     }
     
     @IBAction func nextButtonPressed(_ sender: Any) {
+        loadNewMultiplicandData()
+        resetView()
     }
     
 //GENERAL FUNCTIONS
     //Get given answer Int
     func getGivenAnswer(number: String) {
+        
+        if givenAnswer == 0 {
+            givenAnswer = Int(number)!
+        } else {
+            givenAnswer = Int(String(givenAnswer) + number) ?? 0
+        }
         if String(givenAnswer).count == String(answer).count {
             for i in 0..<keyboardNumbersButtons.count {
                 keyboardNumbersButtons[i].isEnabled = false
             }
-        }else if givenAnswer == 0 {
-            givenAnswer = Int(number)!
-        } else {
-            givenAnswer = Int(String(givenAnswer) + number) ?? 0
+        carryButton.isEnabled = false
         }
     }
     
@@ -188,7 +193,7 @@ class BasicMultiplicationViewController: UIViewController {
     
     func resetView() {
         givenAnswer = 0
-        
+        instructionsLabel.textColor = UIColor.black
         
         for i in 0..<keyboardNumbersButtons.count {
             keyboardNumbersButtons[i].isEnabled = true
@@ -216,12 +221,16 @@ class BasicMultiplicationViewController: UIViewController {
         instructions(multiplier: multiplier)
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    func loadNewMultiplicandData() {
         multiplicand = randomNumber()
         multiplicandArrayFunc(number: multiplicand)
         placeMultiplierLabels(array: multiplicandArray)
         ChooseNumberOfZerosToShow(multiplier: multiplier, multiplicand: multiplicand)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
         multiplierLabel.text = multiplier.multiplierString
         multiplyByLabel.text = "Multiply by \(multiplier.multiplierString)"
         for i in 0..<buttonLabels.count {
@@ -231,6 +240,7 @@ class BasicMultiplicationViewController: UIViewController {
             button.layer.borderWidth = 1
             button.layer.borderColor = UIColor.black.cgColor
         }
+        loadNewMultiplicandData()
         resetView()
 
         // Do any additional setup after loading the view.
