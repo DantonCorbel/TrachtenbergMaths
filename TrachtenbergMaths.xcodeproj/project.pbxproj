@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		BBC9ADC4240BA294002322CE /* ContentsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC9ADC3240BA294002322CE /* ContentsTableViewController.swift */; };
-		BBC9ADC6240BA2E8002322CE /* ContentsInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC9ADC5240BA2E8002322CE /* ContentsInfo.swift */; };
+		BBC9ADC6240BA2E8002322CE /* BasicMultiplicationInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC9ADC5240BA2E8002322CE /* BasicMultiplicationInfo.swift */; };
 		BBC9ADCC240C8B13002322CE /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC9ADCB240C8B13002322CE /* IntroViewController.swift */; };
 		BBC9ADCE240DF3CF002322CE /* BasicMultiplicationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC9ADCD240DF3CF002322CE /* BasicMultiplicationViewController.swift */; };
 		BBDB04C823493F9500A6793C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBDB04C723493F9500A6793C /* AppDelegate.swift */; };
@@ -19,7 +19,7 @@
 
 /* Begin PBXFileReference section */
 		BBC9ADC3240BA294002322CE /* ContentsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentsTableViewController.swift; sourceTree = "<group>"; };
-		BBC9ADC5240BA2E8002322CE /* ContentsInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentsInfo.swift; sourceTree = "<group>"; };
+		BBC9ADC5240BA2E8002322CE /* BasicMultiplicationInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicMultiplicationInfo.swift; sourceTree = "<group>"; };
 		BBC9ADCB240C8B13002322CE /* IntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroViewController.swift; sourceTree = "<group>"; };
 		BBC9ADCD240DF3CF002322CE /* BasicMultiplicationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicMultiplicationViewController.swift; sourceTree = "<group>"; };
 		BBDB04C423493F9500A6793C /* TrachtenbergMaths.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrachtenbergMaths.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -65,7 +65,7 @@
 				BBC9ADCD240DF3CF002322CE /* BasicMultiplicationViewController.swift */,
 				BBC9ADCB240C8B13002322CE /* IntroViewController.swift */,
 				BBC9ADC3240BA294002322CE /* ContentsTableViewController.swift */,
-				BBC9ADC5240BA2E8002322CE /* ContentsInfo.swift */,
+				BBC9ADC5240BA2E8002322CE /* BasicMultiplicationInfo.swift */,
 				BBDB04CE23493F9600A6793C /* Assets.xcassets */,
 				BBDB04D023493F9600A6793C /* LaunchScreen.storyboard */,
 				BBDB04D323493F9700A6793C /* Info.plist */,
@@ -145,7 +145,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BBDB04C823493F9500A6793C /* AppDelegate.swift in Sources */,
-				BBC9ADC6240BA2E8002322CE /* ContentsInfo.swift in Sources */,
+				BBC9ADC6240BA2E8002322CE /* BasicMultiplicationInfo.swift in Sources */,
 				BBC9ADC4240BA294002322CE /* ContentsTableViewController.swift in Sources */,
 				BBC9ADCE240DF3CF002322CE /* BasicMultiplicationViewController.swift in Sources */,
 				BBC9ADCC240C8B13002322CE /* IntroViewController.swift in Sources */,

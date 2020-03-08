@@ -15,6 +15,7 @@ class BasicMultiplicationViewController: UIViewController {
     var multiplicandArray = ["0", "0"]
     var answer = 0
     var toggleKeyColour = true
+    var givenAnswer = 0
 
     @IBOutlet weak var multiplyByLabel: UILabel!
     @IBOutlet weak var multiplierLabel: UILabel!
@@ -37,6 +38,7 @@ class BasicMultiplicationViewController: UIViewController {
                     if i == 0 {break}
                     answerLabels[i-1].text = "?"
                     answerLabels[i-1].isEnabled = true
+                    getGivenAnswer(number: number!)
                     break
                 }
             }
@@ -51,13 +53,23 @@ class BasicMultiplicationViewController: UIViewController {
                 }
             }
         }
-        
+        instructions(multiplier: multiplier)
     }
     
     @IBAction func carryButtonPressed(_ sender: Any) {
         
         toggleCarryButton()
     }
+    
+    //Get given answer Int
+    func getGivenAnswer(number: String) {
+        if givenAnswer == 0 {
+            givenAnswer = Int(number)!
+        } else {
+            givenAnswer = Int(String(givenAnswer) + number) ?? 0
+        }
+    }
+    
     
     //toggle carry button
     func toggleCarryButton() {
@@ -72,16 +84,35 @@ class BasicMultiplicationViewController: UIViewController {
     
     
     //get instruction into attributed text
-    func instructions () {
-        let boldText = "\(elevenInstructions[0].heading)"
-        let attrs = [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 17)]
-        let attributedString = NSMutableAttributedString(string:boldText, attributes:attrs)
+    func instructions(multiplier: BasicMultiplicationMultiplier) {
+        var boldText = ""
+        var normalText = ""
         
-        let normalText = "\(elevenInstructions[1].instruction)"
+        if String(givenAnswer).count == String(answer).count {
+                boldText = ""
+                normalText = ""
+            
+        } else if answerLabels[4].text == "?" {
+                    boldText = multiplier.instructionsSteps[0].heading
+                    normalText = multiplier.instructionsSteps[0].instruction
+          } else if answerLabels[5-String(answer).count].text == "?" {
+            boldText = multiplier.instructionsSteps[2].heading
+            normalText = multiplier.instructionsSteps[2].instruction
+          } else {
+            boldText = multiplier.instructionsSteps[1].heading
+            normalText = multiplier.instructionsSteps[1].instruction
+        }
+        
+        
+        let attributes = [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 17)]
+        let attributedString = NSMutableAttributedString(string:boldText, attributes:attributes)
+        
         let normalString = NSMutableAttributedString(string:normalText)
         
+    
         attributedString.append(normalString)
         instructionsLabel.attributedText = attributedString
+        
     }
     
     //get random number to make multiplicand
@@ -128,7 +159,7 @@ class BasicMultiplicationViewController: UIViewController {
         multiplicandArrayFunc(number: multiplicand)
         placeMultiplierLabels(array: multiplicandArray)
         ChooseNumberOfZerosToShow(multiplier: multiplier, multiplicand: multiplicand)
-        instructions()
+        instructions(multiplier: multiplier)
         for i in 0..<buttonLabels.count {
             let button = buttonLabels[i]
             button.backgroundColor = .clear
