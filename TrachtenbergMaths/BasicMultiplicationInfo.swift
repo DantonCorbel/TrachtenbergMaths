@@ -139,42 +139,42 @@ enum BasicMultiplicationMultiplier {
         }
     }
     
-    var summarySteps: InstructionsStruct {
+    var summarySteps: String {
         switch self {
         case .twelve:
-            return InstructionsStruct(heading: "Summary", instruction:  "Double the number, add the neighbour")
+            return "Double the number, add the neighbour"
         case .eleven:
-            return InstructionsStruct(heading: "Summary", instruction: "Add the neighbour")
+            return "Add the neighbour"
         case .nine:
-            return InstructionsStruct(heading: "Summary", instruction: """
+            return """
 First Step: Subtract from 10
 Middle Step: Subtract from 9, add the neighbour
 Last Step: Subtract 1 from left-most digit
-""")
+"""
         case .eight:
-            return InstructionsStruct(heading: "Summary", instruction: """
+            return """
 First Step: Subtract from 10, then double
 Middle Step: Subtract from 9, double, add the neighbour
 Last Step: Subtract 2 from left-most digit
-""")
+"""
         case .seven:
-            return InstructionsStruct(heading: "Summary", instruction: "Double the digit, add \'half\' the neighbour. If digit is odd, add 5.")
+            return "Double the digit, add \'half\' the neighbour. If digit is odd, add 5."
         case .six:
-            return InstructionsStruct(heading: "Summary", instruction: "Add \'half\' the neighbour, if digit is odd, add 5.")
+            return "Add \'half\' the neighbour, if digit is odd, add 5."
         case .five:
-            return InstructionsStruct(heading: "Summary", instruction: "Use \'half\' the neighbour, if digit is odd, add 5.")
+            return "Use \'half\' the neighbour, if digit is odd, add 5."
         case .four:
-            return InstructionsStruct(heading: "Summary", instruction: """
+            return """
 First Step: Subtract from 10, if digit odd, add 5
 Middle Step: Subtract from 9, add \'half\' the neighbour, then if digit odd add 5
 Last Step: Take \'half\' of the left-most digit and subtract 1
-""")
+"""
         case .three:
-            return InstructionsStruct(heading: "Summary", instruction: """
+            return """
 First Step: Subtract from 10, double, if digit odd, add 5
 Middle Step: Subtract from 9, double, add \'half\' the neighbour, then if digit odd add 5
 Last Step: Take \'half\' of the left-most digit and subtract 2
-""")
+"""
         }
     }
 }

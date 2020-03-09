@@ -489,6 +489,7 @@
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="64X-Q9-Kc8">
                                 <rect key="frame" x="20" y="281" width="280" height="20.5"/>
+                                <gestureRecognizers/>
                                 <attributedString key="attributedText">
                                     <fragment content="Step 1:">
                                         <attributes>
@@ -499,6 +500,9 @@
                                     </fragment>
                                 </attributedString>
                                 <nil key="highlightedColor"/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="vPw-Cz-oJH" appends="YES" id="ko9-OJ-rOo"/>
+                                </connections>
                             </label>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="vOe-DY-5K6">
                                 <rect key="frame" x="0.0" y="540" width="320" height="29"/>
@@ -507,6 +511,9 @@
                                     <segment title="Practice"/>
                                     <segment title="Test"/>
                                 </segments>
+                                <connections>
+                                    <action selector="UISegmentedControlTapped:" destination="9ud-FW-3xQ" eventType="valueChanged" id="W2B-fJ-IMP"/>
+                                </connections>
                             </segmentedControl>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="eET-Jh-smV" userLabel="Buttons Stack View">
                                 <rect key="frame" x="20" y="378" width="280" height="112"/>
@@ -648,6 +655,18 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
+                            <segmentedControl opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="gT3-OD-Utx">
+                                <rect key="frame" x="0.0" y="540" width="320" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="Learn" enabled="NO"/>
+                                    <segment title="Practice" enabled="NO"/>
+                                    <segment title=""/>
+                                </segments>
+                                <connections>
+                                    <action selector="UISegmentedControlTapped:" destination="9ud-FW-3xQ" eventType="valueChanged" id="a7M-YG-fuj"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -682,6 +701,7 @@
                         <outlet property="multiplierLabel" destination="VWs-ZE-yKc" id="9JT-rY-Ds1"/>
                         <outlet property="multiplyByLabel" destination="kZ4-RE-ek9" id="AiO-Dp-tKu"/>
                         <outlet property="nextButton" destination="FFR-0a-WzT" id="kQp-tW-Zfj"/>
+                        <outlet property="segmentedControl" destination="vOe-DY-5K6" id="yFX-gi-ngg"/>
                         <outlet property="undoButton" destination="h1v-K0-5XQ" id="xM2-XD-G31"/>
                         <outletCollection property="keyboardNumbersButtons" destination="Dsf-aM-rXW" collectionClass="NSMutableArray" id="0T1-Tk-BkJ"/>
                         <outletCollection property="keyboardNumbersButtons" destination="Pkj-nU-P0s" collectionClass="NSMutableArray" id="ppd-oX-kZX"/>
@@ -725,6 +745,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E5k-Sy-4N9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="vPw-Cz-oJH">
+                    <connections>
+                        <action selector="hintTaped:" destination="9ud-FW-3xQ" id="7oV-41-cTn"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1372.5" y="-113.02816901408451"/>
         </scene>

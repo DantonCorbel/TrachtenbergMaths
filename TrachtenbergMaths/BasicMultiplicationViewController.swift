@@ -19,6 +19,7 @@ class BasicMultiplicationViewController: UIViewController {
     var givenAnswer = ""
     var numberTimesNumberButtonPressed = 0
     var undoArray = [Undo]()
+    
 
 //IBOutlet
     @IBOutlet weak var multiplyByLabel: UILabel!
@@ -34,9 +35,27 @@ class BasicMultiplicationViewController: UIViewController {
     @IBOutlet weak var clearButton: UIButton!
     @IBOutlet weak var checkButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
     
     
 //IBAction
+    @IBAction func hintTaped(_ sender: UITapGestureRecognizer) {
+        let boldText = "Summary "
+        let normalText = multiplier.summarySteps
+        
+        let attributes = [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 17)]
+        let attributedString = NSMutableAttributedString(string:boldText, attributes:attributes)
+        
+        let normalString = NSMutableAttributedString(string:normalText)
+        
+        attributedString.append(normalString)
+        instructionsLabel.attributedText = attributedString
+    }
+    
+    
+    @IBAction func UISegmentedControlTapped(_ sender: UISegmentedControl) {
+        segmentedControlChoice()
+    }
     @IBAction func numberButtonPressed(_ sender: UIButton) {
         undoButton.isEnabled = true
         clearButton.isEnabled = true
@@ -48,10 +67,11 @@ class BasicMultiplicationViewController: UIViewController {
                     getGivenAnswer(number: number!)
                     numberTimesNumberButtonPressed += 1
                     undoArray.append(.number)
-                    //print("Given number: \(givenAnswer)", "Answer: \(answer)", "numbers pressed: \(numberTimesNumberButtonPressed)")
+                    
                     if i == 0 {break}
                     answerLabels[i-1].text = "?"
                     answerLabels[i-1].isEnabled = true
+                    
                     break
                 }
             }
@@ -67,7 +87,8 @@ class BasicMultiplicationViewController: UIViewController {
                 }
             }
         }
-        instructions(multiplier: multiplier)
+        
+        segmentedControlChoice()
     }
     
     @IBAction func carryButtonPressed(_ sender: Any) {
@@ -105,9 +126,25 @@ class BasicMultiplicationViewController: UIViewController {
         numberTimesNumberButtonPressed = 0
         loadNewMultiplicandData()
         resetView()
+        
     }
     
 //GENERAL FUNCTIONS
+    
+    //func segmentControl
+    func segmentedControlChoice() {
+        switch segmentedControl.selectedSegmentIndex {
+        case 0:
+            learnInstructions(multiplier: multiplier)
+        case 1:
+            instructionsLabel.text = "Hint?"
+            instructionsLabel.isUserInteractionEnabled = true
+        case 2:
+            instructionsLabel.text = ""
+        default:
+            learnInstructions(multiplier: multiplier)
+        }
+    }
     
     //Undo function
     func undo(cases: Undo) {
@@ -136,20 +173,9 @@ class BasicMultiplicationViewController: UIViewController {
                 numberTimesNumberButtonPressed -= 1
                 if numberTimesNumberButtonPressed == 0 {
                         resetView()
-                    //}
-                    //break
                 }
              
             }
-            
-//                if answerLabels[i].text != "0" || answerLabels[i].text != "?" {
-//                    answerLabels[i].text = "?"
-//                    if i == 0 {break}
-//                    answerLabels[i-1].isEnabled = false
-//                }
-            
-//        default:
-//            undoButton.isEnabled = false
         }
     }
     
@@ -185,8 +211,8 @@ class BasicMultiplicationViewController: UIViewController {
     
     
     //get instruction into attributed text
-    func instructions(multiplier: BasicMultiplicationMultiplier) {
-        
+    func learnInstructions(multiplier: BasicMultiplicationMultiplier) {
+        instructionsLabel.isUserInteractionEnabled = false
         var boldText = ""
         var normalText = ""
         
@@ -220,6 +246,9 @@ class BasicMultiplicationViewController: UIViewController {
         instructionsLabel.attributedText = attributedString
         
     }
+    
+    //practice instructions
+    
     
     //get random number to make multiplicand
     func randomNumber() -> Int {
@@ -286,7 +315,7 @@ class BasicMultiplicationViewController: UIViewController {
                 answerLabels[i].text = "0"
             }
         }
-        instructions(multiplier: multiplier)
+        segmentedControlChoice()
     }
     
     func loadNewMultiplicandData() {
