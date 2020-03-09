@@ -179,7 +179,9 @@ Last Step: Take \'half\' of the left-most digit and subtract 2
     }
 }
 
-
+enum Undo {
+    case number, carry
+}
 
 
 

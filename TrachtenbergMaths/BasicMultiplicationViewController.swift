@@ -15,9 +15,10 @@ class BasicMultiplicationViewController: UIViewController {
     var multiplicand: Int!
     var multiplicandArray = ["0", "0"]
     var answer = 0
-    var toggleKeyColour = true
+    var toggleCarry = true
     var givenAnswer = ""
     var numberTimesNumberButtonPressed = 0
+    var undoArray = [Undo]()
 
 //IBOutlet
     @IBOutlet weak var multiplyByLabel: UILabel!
@@ -40,12 +41,13 @@ class BasicMultiplicationViewController: UIViewController {
         undoButton.isEnabled = true
         clearButton.isEnabled = true
         let number = sender.title (for: .normal)
-        if toggleKeyColour {
+        if toggleCarry {
             for i in (0..<answerLabels.count).reversed() {
                 if answerLabels[i].text == "?" {
                     answerLabels[i].text = number
                     getGivenAnswer(number: number!)
                     numberTimesNumberButtonPressed += 1
+                    undoArray.append(.number)
                     //print("Given number: \(givenAnswer)", "Answer: \(answer)", "numbers pressed: \(numberTimesNumberButtonPressed)")
                     if i == 0 {break}
                     answerLabels[i-1].text = "?"
@@ -60,6 +62,7 @@ class BasicMultiplicationViewController: UIViewController {
                     carryLabels[i].textColor = UIColor.red
                     carryLabels[i].isEnabled = true
                     toggleCarryButton()
+                    undoArray.append(.carry)
                     break
                 }
             }
@@ -72,6 +75,8 @@ class BasicMultiplicationViewController: UIViewController {
     }
  
     @IBAction func undoButtonPressed(_ sender: Any) {
+        undo(cases: undoArray.popLast()!)
+       
     }
     
     @IBAction func clearButtonPressed(_ sender: Any) {
@@ -94,7 +99,8 @@ class BasicMultiplicationViewController: UIViewController {
     @IBAction func nextButtonPressed(_ sender: Any) {
         multiplicandArray = ["0", "0"]
         answer = 0
-        toggleKeyColour = true
+        toggleCarry = true
+        undoArray = [Undo]()
         givenAnswer = ""
         numberTimesNumberButtonPressed = 0
         loadNewMultiplicandData()
@@ -102,6 +108,52 @@ class BasicMultiplicationViewController: UIViewController {
     }
     
 //GENERAL FUNCTIONS
+    
+    //Undo function
+    func undo(cases: Undo) {
+       // let caseRequired = undoArray.popLast()!
+        print(cases)
+        switch cases {
+        case .carry:
+            for i in 0..<carryLabels.count {
+                if carryLabels[i] .text != "0" {
+                    carryLabels[i].text = "0"
+                    carryLabels[i].isEnabled = false
+                    carryLabels[i].textColor = UIColor.black
+                    break
+                }
+             
+            }
+        case .number:
+            if numberTimesNumberButtonPressed > 0 {
+                answerLabels[5-numberTimesNumberButtonPressed].text = "?"
+                if numberTimesNumberButtonPressed < 5 {
+                    if answerLabels[5-numberTimesNumberButtonPressed-1].text == "?" {
+                       answerLabels[5-numberTimesNumberButtonPressed-1].isEnabled = false
+                        answerLabels[5-numberTimesNumberButtonPressed-1].text = "0"
+                    }
+                }
+                numberTimesNumberButtonPressed -= 1
+                if numberTimesNumberButtonPressed == 0 {
+                        resetView()
+                    //}
+                    //break
+                }
+             
+            }
+            
+//                if answerLabels[i].text != "0" || answerLabels[i].text != "?" {
+//                    answerLabels[i].text = "?"
+//                    if i == 0 {break}
+//                    answerLabels[i-1].isEnabled = false
+//                }
+            
+//        default:
+//            undoButton.isEnabled = false
+        }
+    }
+    
+    
     //Get given answer Int
     func getGivenAnswer(number: String) {
         
@@ -122,12 +174,12 @@ class BasicMultiplicationViewController: UIViewController {
     
     //toggle carry button
     func toggleCarryButton() {
-        if toggleKeyColour {
+        if toggleCarry {
             carryButton.isSelected = true
-            toggleKeyColour = false
+            toggleCarry = false
         } else {
             carryButton.isSelected = false
-            toggleKeyColour = true
+            toggleCarry = true
         }
     }
     
@@ -207,6 +259,7 @@ class BasicMultiplicationViewController: UIViewController {
     
     func resetView() {
         givenAnswer = ""
+        undoArray = [Undo]()
         instructionsLabel.textColor = UIColor.black
         numberTimesNumberButtonPressed = 0
         
