@@ -56,6 +56,7 @@ class BasicMultiplicationViewController: UIViewController {
     @IBAction func UISegmentedControlTapped(_ sender: UISegmentedControl) {
         segmentedControlChoice()
     }
+    
     @IBAction func numberButtonPressed(_ sender: UIButton) {
         undoButton.isEnabled = true
         clearButton.isEnabled = true
@@ -67,7 +68,7 @@ class BasicMultiplicationViewController: UIViewController {
                     getGivenAnswer(number: number!)
                     numberTimesNumberButtonPressed += 1
                     undoArray.append(.number)
-                    
+                    print(givenAnswer, undoArray, numberTimesNumberButtonPressed)
                     if i == 0 {break}
                     answerLabels[i-1].text = "?"
                     answerLabels[i-1].isEnabled = true
@@ -149,7 +150,7 @@ class BasicMultiplicationViewController: UIViewController {
     //Undo function
     func undo(cases: Undo) {
        // let caseRequired = undoArray.popLast()!
-        print(cases)
+       
         switch cases {
         case .carry:
             for i in 0..<carryLabels.count {
@@ -174,8 +175,17 @@ class BasicMultiplicationViewController: UIViewController {
                 if numberTimesNumberButtonPressed == 0 {
                         resetView()
                 }
-             
+                givenAnswer = String(givenAnswer.suffix(numberTimesNumberButtonPressed))
+                print(givenAnswer)
+                if checkButton.isEnabled {
+                    for i in 0..<keyboardNumbersButtons.count {
+                        keyboardNumbersButtons[i].isEnabled = true
+                    }
+                    carryButton.isEnabled = true
+                    checkButton.isEnabled = false
+                }
             }
+            segmentedControlChoice()
         }
     }
     
@@ -196,6 +206,7 @@ class BasicMultiplicationViewController: UIViewController {
         checkButton.isEnabled = true
         }
     }
+    
     
     
     //toggle carry button
